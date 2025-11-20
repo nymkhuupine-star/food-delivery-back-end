@@ -17,7 +17,7 @@ connectToDB();
 
 app.use("/user", userRouter);
 
-app.use("./authentication", authenticationRouter);
+app.use("/authentication", authenticationRouter);
 
 app.listen(PORT, () => {
   console.log(`API beebeg on http://localhost:${PORT}`);

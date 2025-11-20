@@ -2,23 +2,23 @@ const UserModel = require("../../schemas/userSchema");
 const bcrypt = require("bcrypt");
 
 const loginUser = async (req, res) => {
-  const { password } = req.body;
-  const { user } = req;
+  const { email, password } = req.body;
 
   try {
-    // const user = await UserModel.findOne(email);
-    const hashedPassword = user.password;
-    const isPasswordWatching = bcrypt.compare(password, hashedPassword);
-
-    if (!isPasswordWatching) {
-      res.status(404).json(`something went wrong: ${err}`);
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "Имэйл бүртгэлгүй байна" });
     }
 
-    console.log("isPasswordWatching", isPasswordWatching);
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Нууц үг буруу" });
+    }
 
-    res.status(200).json(`user: hello`);
+    res.status(200).json({ message: "Амжилттай нэвтэрлээ", user });
   } catch (err) {
-    res.status(500).json(`something went wrong: ${err}`);
+    console.error(err);
+    res.status(500).json({ message: "Серверийн алдаа" });
   }
 };
 

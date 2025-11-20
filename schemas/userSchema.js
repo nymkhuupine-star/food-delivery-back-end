@@ -5,7 +5,6 @@ const UserSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: [true, "First name is required"],
       minLength: [6, "First name length must be at least 6 characters"],
       maxLength: [50, "First name length must be 6 to 50 characters"],
     },
@@ -19,11 +18,9 @@ const UserSchema = new Schema(
     },
     phoneNumber: {
       type: String,
-      required: [true, "Phone number is required"],
     },
     address: {
       type: String,
-      required: false,
     },
     role: {
       type: String,
