@@ -6,9 +6,6 @@ const loginUser = async (req, res) => {
 
   try {
     const user = await UserModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "Имэйл бүртгэлгүй байна" });
-    }
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
