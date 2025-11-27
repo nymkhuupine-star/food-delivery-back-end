@@ -1,4 +1,4 @@
-const { default: Food } = require("../../models/food");
+const Food = require("../../schemas/food");
 
 const updateFood = async (req, res) => {
   try {

@@ -1,6 +1,7 @@
-const { default: Food } = require("../../models/food");
+const Food = require("../../schemas/food");
 
 const createFood = async (req, res) => {
+  const { foodName, price, image, ingredients, category } = req.body;
   try {
     const food = await Food.create(req.body);
     res.status(201).json(food);
