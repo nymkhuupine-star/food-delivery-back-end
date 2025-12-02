@@ -2,9 +2,7 @@ const Category = require("../../schemas/categorySchema");
 
 const getCategory = async (req, res) => {
   try {
-    const { id } = req.body;
-
-    const category = await Category.findById(id);
+    const category = await Category.find();
 
     if (!category) {
       return res.status(404).json({ message: "Category not found" });
