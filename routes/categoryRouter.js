@@ -6,9 +6,9 @@ const updateCategory = require("../controllers/category/updateCategory");
 const verifyJwt = require("../middleware/verifyJwt");
 const categoryRouter = express.Router();
 
-categoryRouter.post("/", verifyJwt, createCategory);
+categoryRouter.post("/",  createCategory);
 categoryRouter.get("/", getCategory);
-categoryRouter.delete("/:id", verifyJwt, deleteCategory);
-categoryRouter.put("/:id", verifyJwt, updateCategory);
+categoryRouter.delete("/:id",  deleteCategory);
+categoryRouter.put("/:id", updateCategory);
 
 module.exports = categoryRouter;
