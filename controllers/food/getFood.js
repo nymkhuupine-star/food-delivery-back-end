@@ -2,18 +2,11 @@ const Food = require("../../schemas/food");
 
 const getFood = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const food = await Food.findById(id).populate("category");
-
-    if (!food) {
-      return res.status(404).json({ message: "Food not found" });
-    }
-
-    res.status(200).json(food);
+    const foods = await Food.find();
+    return res.json(foods);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ msg: err.message });
   }
 };
+
 module.exports = getFood;
