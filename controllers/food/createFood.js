@@ -1,9 +1,17 @@
 const Food = require("../../schemas/food");
 
 const createFood = async (req, res) => {
-  const { foodName, price, image, ingredients, category } = req.body;
+  const { dishName, price, image, description, category } = req.body;
+
   try {
-    const food = await Food.create(req.body);
+    const food = await Food.create({
+      foodName: dishName,        
+      price,
+      image,
+      ingredients: description,   
+      category,
+    });
+
     res.status(201).json(food);
   } catch (err) {
     console.error(err);
@@ -12,3 +20,9 @@ const createFood = async (req, res) => {
 };
 
 module.exports = createFood;
+
+
+
+
+
+
